@@ -16,18 +16,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @RestControllerAdvice
 public class RestApiExceptionHandler{
-
-	
-	@ExceptionHandler({Exception.class})
-	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
-	}
-	
-
-	@ExceptionHandler({Throwable.class})
-	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	}
 	
 	
 	@ExceptionHandler({AlreadyExistsException.class})

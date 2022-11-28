@@ -17,7 +17,20 @@ public class InvalidAuthenticationEntryPoint implements AuthenticationEntryPoint
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
 		
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Invalid Password");
+		
+		 response.setContentType("application/json");
+	        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+	        
+	        if(authException.getMessage().contains("Bad credentials"))
+	        {
+	        	 response.getOutputStream().println("{ \"error\": \"" + "Invalid Password" + "\" }");
+	        }
+	        else
+	        {
+	        	 response.getOutputStream().println("{ \"error\": \"" + authException.getMessage() + "\" }");
+	        }
+	        
+	       
 		
 	}
 
